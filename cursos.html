@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos y Juegos - Brailletopía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <main id="main-content" class="container">
+        <h1 style="margin-top: 40px;">Tu Sala de Aprendizaje</h1>
+
+        <section style="padding: 40px 0;">
+            <div class="card" style="border-color: var(--col-primary);">
+                <header style="border-bottom: none; padding-bottom: 0;">
+                    <h2 id="translator-title">⌨️ Traductor Mágico</h2>
+                    <p>Escribe tu nombre y mira cómo se escribe en Braille.</p>
+                </header>
+
+                <div class="form-group" style="margin-top: 24px;">
+                    <label for="text-input">Escribe aquí (máximo 20 letras):</label>
+                    <input 
+                        type="text" 
+                        id="text-input" 
+                        placeholder="Ej: Hola Braille" 
+                        maxlength="20"
+                        style="font-size: 1.5rem; letter-spacing: 1px;"
+                        aria-controls="braille-output-container"
+                    >
+                </div>
+
+                <div 
+                    id="braille-output-container" 
+                    class="translator-output" 
+                    role="region" 
+                    aria-live="polite" 
+                >
+                    <p style="color: #666; font-style: italic;">Los puntos mágicos aparecerán aquí...</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding: 40px 0;">
+            <div class="card" style="border-top: 6px solid var(--col-secondary);">
+                <h2 style="text-align: center; margin-bottom: 10px;">🎮 El Reto de los Puntos</h2>
+                <p style="text-align: center; margin-bottom: 30px;">Mira los puntos y adivina la letra correcta.</p>
+
+                <div id="braille-quiz-app" class="quiz-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module">
+        import { UserProfile } from \'./assets/js/user-profile.js\';
+        import { AccessibilityManager } from './assets/js/accessibility.js';
+        import { BrailleTranslator } from './assets/js/braille-translator.js';
+        import { BrailleQuiz } from './assets/js/braille-quiz.js';
+        import { soundManager } from './assets/js/sound-manager.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new AccessibilityManager();
+            new BrailleTranslator('braille-output-container', 'text-input');
+            new BrailleQuiz('braille-quiz-app');
+        }
+        UserProfile.updateLastPage("cursos.html"););
+    </script>
+</body>
+</html>

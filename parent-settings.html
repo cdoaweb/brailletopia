@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración Familiar - Brailletopía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <main id="main-content" class="container" style="padding: 60px 0; max-width: 700px;">
+        <h1 style="color: var(--col-primary);">🔒 Área de Padres/Tutores</h1>
+        <p>Ajusta la dificultad del aprendizaje y revisa el progreso de tu alumno.</p>
+
+        <section class="card" id="security-gate" style="margin-top: 30px; border: 3px solid var(--col-secondary);">
+            <h2 style="font-size: 1.5rem; color: var(--col-text);">Verificación de Seguridad</h2>
+            <p>Para acceder a la configuración, resuelve la siguiente operación:</p>
+
+            <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
+                <p id="math-problem" style="font-size: 1.8rem; font-weight: 700;">?</p>
+                <input type="number" id="math-answer" placeholder="Respuesta" style="width: 120px; font-size: 1.5rem;" aria-label="Resultado de la operación matemática">
+                <button id="verify-btn" class="btn btn-primary">Verificar</button>
+            </div>
+            <div id="auth-feedback" role="alert" aria-live="polite" style="min-height: 20px;"></div>
+        </section>
+
+        <div id="settings-content" style="display:none; margin-top: 40px;">
+            <h2>📊 Progreso del Alumno</h2>
+            <div class="grid-12" style="margin-bottom: 30px;">
+                <div class="card" style="grid-column: span 6;">
+                    <h3>Nivel Actual:</h3>
+                    <p id="current-level" style="font-size: 2rem; font-weight: 700; color: var(--col-tertiary);">...</p>
+                </div>
+                <div class="card" style="grid-column: span 6;">
+                    <h3>Tasa de Acierto:</h3>
+                    <p id="success-rate" style="font-size: 2rem; font-weight: 700; color: var(--col-success);">...</p>
+                </div>
+            </div>
+
+            <h2>⚙️ Ajustes de Dificultad</h2>
+            <div class="form-group">
+                <label for="level-select">Seleccionar Nivel de Dificultad</label>
+                <select id="level-select" style="min-height: 48px; font-size: 1.2rem;">
+                    <option value="1">Nivel 1: Vocales y Consonantes Básicas (A-J)</option>
+                    <option value="2">Nivel 2: Alfabeto completo (A-Z)</option>
+                    <option value="3">Nivel 3: Números y Signos de Puntuación</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Controles de Interacción Multisensorial</label>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="narrator-toggle" style="width: 20px; height: 20px;">
+                        <label for="narrator-toggle" style="margin: 0; font-weight: 400;">Activar Narrador de Voz (TTS)</label>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="sounds-toggle" style="width: 20px; height: 20px;">
+                        <label for="sounds-toggle" style="margin: 0; font-weight: 400;">Activar Sonidos de Feedback (Clicks y aciertos)</label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-xl" id="save-settings" style="width: 100%; margin-top: 20px;">Guardar Ajustes</button>
+        </div>
+    </main>
+
+    <script type="module">
+        import { UserProfile } from \'./assets/js/user-profile.js\';
+        import { AccessibilityManager } from './assets/js/accessibility.js';
+        import { ParentSettings } from './assets/js/parent-settings.js';
+        import { soundManager } from './assets/js/sound-manager.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new AccessibilityManager();
+            new ParentSettings();
+        }
+        UserProfile.updateLastPage("parent-settings.html"););
+    </script>
+</body>
+</html>
