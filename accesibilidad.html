@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaración de Accesibilidad – Brailletopía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main id="main-content" class="container" style="padding: 60px 0; max-width: 900px;">
+    <h1>Declaración de Accesibilidad</h1>
+    <p>Brailletopía está diseñada siguiendo criterios WCAG 2.1 AA y principios de Diseño Universal para el Aprendizaje.</p>
+
+    <section class="card" style="margin-top: 30px;">
+
+        <h2>Compromiso</h2>
+        <p>
+            Nos comprometemos a garantizar que la plataforma sea usable por el mayor número posible
+            de personas, incluyendo usuarios con discapacidad visual, auditiva o cognitiva.
+        </p>
+
+        <h2>Medidas Implementadas</h2>
+        <ul>
+            <li>Compatibilidad con lector de pantalla.</li>
+            <li>Descripciones ARIA en componentes interactivos.</li>
+            <li>Modo alto contraste configurable.</li>
+            <li>Ajuste dinámico del tamaño de texto.</li>
+            <li>Narrador activable (TTS).</li>
+            <li>Sistema de sonido accesible basado en UX sonoro.</li>
+            <li>Navegación completa por teclado.</li>
+        </ul>
+
+        <h2>Limitaciones Conocidas</h2>
+        <p>
+            Algunas animaciones y contenido multimedia pueden requerir revisiones futuras
+            para garantizar una experiencia AAA.
+        </p>
+
+        <h2>Contacto para Accesibilidad</h2>
+        <p>
+            Si encuentras barreras de accesibilidad, por favor contáctanos en:<br>
+            <strong>accesibilidad@brailletopia.org</strong>
+        </p>
+    </section>
+</main>
+
+<script type="module">
+        import { UserProfile } from \'./assets/js/user-profile.js\';
+    import { AccessibilityManager } from './assets/js/accessibility.js';
+    new AccessibilityManager();
+</script>
+
+</body>
+</html>

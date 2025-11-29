@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso Legal – Brailletopía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main id="main-content" class="container" style="padding: 60px 0; max-width: 900px;">
+    <h1>Aviso Legal</h1>
+    <p>Este documento regula el uso del sitio web Brailletopía y establece las condiciones de acceso y responsabilidad.</p>
+
+    <section class="card" style="margin-top: 30px;">
+        <h2>1. Información General</h2>
+        <p>
+            Brailletopía es una plataforma educativa destinada a la enseñanza del sistema braille
+            mediante actividades accesibles, juegos y herramientas inclusivas.
+        </p>
+
+        <h2>2. Propiedad Intelectual</h2>
+        <p>
+            Todos los contenidos, diseño, estructura y elementos multimedia están protegidos por la normativa vigente.
+        </p>
+
+        <h2>3. Uso Responsable</h2>
+        <p>
+            El uso del sitio implica la aceptación de este aviso y el compromiso de utilizar sus recursos de forma respetuosa.
+        </p>
+
+        <h2>4. Protección de Datos</h2>
+        <p>
+            Brailletopía no recopila datos sensibles de menores. Cualquier información almacenada localmente
+            se guarda únicamente en el dispositivo del usuario (localStorage).
+        </p>
+    </section>
+</main>
+
+<script type="module">
+        import { UserProfile } from \'./assets/js/user-profile.js\';
+    import { AccessibilityManager } from './assets/js/accessibility.js';
+    new AccessibilityManager();
+</script>
+
+</body>
+</html>

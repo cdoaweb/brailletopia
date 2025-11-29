@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brailletopía - Aprende Braille Jugando</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="btn btn-primary sr-only" style="position:absolute; top:0; z-index:999;">Saltar al contenido principal</a>
+
+    <header role="banner">
+        <div class="container">
+            <div class="access-panel" aria-label="Herramientas de accesibilidad">
+                <button id="btn-contrast" class="btn btn-secondary" aria-label="Alternar alto contraste">👁️ Contraste</button>
+                <button id="btn-inc-text" class="btn btn-secondary" aria-label="Aumentar tamaño de texto">A+</button>
+                <button id="btn-narrator" class="btn btn-secondary" aria-label="Activar o desactivar narrador y leer página">🔊 Narrador</button>
+            </div>
+
+            <div class="nav-flex">
+                <a href="index.html" aria-label="Brailletopía, ir al inicio" style="font-size: 1.5rem; font-weight: 700; text-decoration: none; color: var(--col-primary);">
+                    BRAILLETOPÍA ⠃⠗⠇
+                </a>
+                <nav role="navigation" aria-label="Menú principal">
+                    <ul style="list-style: none; display: flex; gap: 20px;">
+                        <li><a href="cursos.html" class="btn btn-secondary">Cursos</a></li>
+                        <li><a href="parent-settings.html" class="btn btn-secondary">Familia</a></li>
+                        <li><a href="contacto.html" class="btn btn-primary">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section aria-labelledby="hero-title" style="padding: 64px 0; text-align: center; background: #f0f4ff;">
+            <div class="container">
+                <h1 id="hero-title">Aprende Braille de forma divertida</h1>
+                <p style="font-size: 1.25rem; max-width: 700px; margin: 0 auto 32px;">
+                    La plataforma educativa diseñada para niños. Explora, toca y escucha el mundo de los puntos mágicos.
+                </p>
+                <a href="cursos.html" class="btn btn-primary btn-xl">Comenzar a aprender ahora</a>
+                <div style="margin-top: 32px;">
+                    <div style="max-width: 100%; height: auto; border-radius: var(--radius-md); background-color: var(--col-tertiary); min-height: 200px;" aria-label="Espacio para imagen ilustrativa del héroe"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" style="padding: 64px 0;">
+            <h2 id="access-title" style="text-align: center; margin-bottom: 40px;">¿Qué quieres hacer hoy?</h2>
+            <div class="grid-12" aria-labelledby="access-title">
+
+                <article class="card" style="grid-column: span 4;">
+                    <h3>Cursos Paso a Paso</h3>
+                    <p>Desde el alfabeto hasta palabras completas.</p>
+                    <a href="cursos.html" class="btn btn-secondary" style="margin-top: auto;">Ir a Cursos</a>
+                </article>
+
+                <article class="card" style="grid-column: span 4;">
+                    <h3>Simulador Interactivo</h3>
+                    <p>Toca los puntos para escuchar y sentir el Braille.</p>
+                    <div id="braille-game-preview"></div>
+                </article>
+
+                <article class="card" style="grid-column: span 4;">
+                    <h3>Área de Familia</h3>
+                    <p>Revisa el progreso y ajusta la dificultad.</p>
+                    <a href="parent-settings.html" class="btn btn-secondary" style="margin-top: auto;">Acceder</a>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <p>© 2024 Brailletopía. Diseño Universal para el Aprendizaje.</p>
+            <nav aria-label="Enlaces legales y de contacto">
+                <ul style="list-style: none; display: flex; gap: 20px; margin-top: 20px;">
+                    <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="accesibilidad.html">Accesibilidad</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { UserProfile } from \'./assets/js/user-profile.js\';
+        import { AccessibilityManager } from './assets/js/accessibility.js';
+        import { BrailleCell } from './assets/js/braille-cell.js';
+        import { soundManager } from './assets/js/sound-manager.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new AccessibilityManager();
+            new BrailleCell('braille-game-preview');
+        }
+        UserProfile.updateLastPage("index.html"););
+    </script>
+</body>
+</html>

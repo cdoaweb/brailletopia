@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto – Brailletopía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main id="main-content" class="container" style="padding: 60px 0; max-width: 800px;">
+    <h1>📩 Contacto</h1>
+    <p>Si tienes dudas, sugerencias o propuestas de colaboración, estaremos encantados de escucharte.</p>
+
+    <section class="card" style="margin-top: 30px;">
+        <h2>Formulario de Contacto</h2>
+
+        <form id="contact-form" style="margin-top: 20px;">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input id="nombre" type="text" placeholder="Tu nombre completo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input id="email" type="email" placeholder="ejemplo@correo.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-xl" style="width: 100%;">Enviar Mensaje</button>
+        </form>
+    </section>
+</main>
+
+<script type="module">
+        import { UserProfile } from \'./assets/js/user-profile.js\';
+    import { AccessibilityManager } from './assets/js/accessibility.js';
+    new AccessibilityManager();
+
+    // ---------- LÓGICA PARA ABRIR EL GESTOR DE CORREO ----------
+    const form = document.getElementById('contact-form');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nombre = document.getElementById('nombre').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const mensaje = document.getElementById('mensaje').value.trim();
+
+        // Correo al que quieres que llegue el mensaje
+        const destinatario = "contacto@brailletopia.org";
+
+        // Construcción del mailto dinámico
+        const asunto = encodeURIComponent(`Nuevo mensaje de ${nombre}`);
+        const cuerpo = encodeURIComponent(
+`Nombre: ${nombre}
+Correo: ${email}
+
+Mensaje:
+${mensaje}
+
+— Enviado desde Brailletopía`
+        );
+
+        const mailtoURL = `mailto:${destinatario}?subject=${asunto}&body=${cuerpo}`;
+
+        // Abre el gestor de correo
+        window.location.href = mailtoURL;
+    });
+</script>
+
+</body>
+</html>
