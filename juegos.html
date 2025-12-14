@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos – Brailletopía</title>
+    <!-- Carga de tipografía y estilos compartidos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Cabecera estática -->
+    <a href="#main-content" class="btn btn-primary sr-only" style="position:absolute; top:0; z-index:999;">Saltar al contenido principal</a>
+    <header role="banner">
+        <div class="container">
+            <div class="access-panel" aria-label="Herramientas de accesibilidad">
+                <button id="btn-contrast" class="btn btn-secondary" aria-label="Alternar alto contraste">👁️ Contraste</button>
+                <button id="btn-inc-text" class="btn btn-secondary" aria-label="Aumentar tamaño de texto">A+</button>
+                <button id="btn-narrator" class="btn btn-secondary" aria-label="Activar o desactivar narrador y leer página">🔊 Narrador</button>
+            </div>
+            <div class="nav-flex">
+                <a href="index.html" aria-label="Brailletopía, ir al inicio" style="font-size: 1.5rem; font-weight: 700; text-decoration: none; color: var(--col-primary);">
+                    BRAILLETOPÍA ⠃⠗⠇
+                </a>
+                <nav role="navigation" aria-label="Menú principal">
+                    <ul style="list-style: none; display: flex; gap: 20px;">
+                        <li><a href="cursos.html" class="btn btn-secondary">Cursos</a></li>
+                        <li><a href="juegos.html" class="btn btn-secondary">Juegos</a></li>
+                        <li><a href="parent-settings.html" class="btn btn-secondary">Familia</a></li>
+                        <li><a href="contacto.html" class="btn btn-primary">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+<main id="main-content" class="container" style="padding: 60px 0;">
+    <h1>🎮 Juegos Braille</h1>
+    <p>Practica y refuerza tus conocimientos de braille con estos minijuegos multisensoriales.</p>
+
+    <!-- Traductor mágico -->
+    <section class="card" style="margin-top: 40px; border-top: 6px solid var(--col-secondary);">
+        <h2>⌨️ Traductor Mágico</h2>
+        <p>Escribe cualquier palabra para ver cómo se representa en braille.</p>
+        <div class="form-group">
+            <label for="translator-input">Escribe aquí (máximo 20 letras):</label>
+            <input type="text" id="translator-input" placeholder="Ej: Braille" maxlength="20" style="font-size: 1.5rem; letter-spacing: 1px;" aria-controls="translator-output" />
+        </div>
+        <div id="translator-output" class="translator-output" role="region" aria-live="polite">
+            <p style="color: #666; font-style: italic;">Los puntos mágicos aparecerán aquí...</p>
+        </div>
+    </section>
+
+    <!-- Reto de los puntos -->
+    <section class="card" style="margin-top: 40px; border-top: 6px solid var(--col-tertiary);">
+        <h2>🎯 Reto de los Puntos</h2>
+        <p>Mira el patrón braille y selecciona la letra correcta.</p>
+        <div id="quiz-container" class="quiz-container"></div>
+    </section>
+
+    <!-- Construye la letra -->
+    <section class="card" style="margin-top: 40px; border-top: 6px solid var(--col-primary);">
+        <h2>🔧 Construye la Letra</h2>
+        <p>Activa los puntos adecuados para formar la letra mostrada.</p>
+        <div id="build-game"></div>
+    </section>
+
+    <!-- Memoria de pares -->
+    <section class="card" style="margin-top: 40px; border-top: 6px solid var(--col-secondary);">
+        <h2>🧠 Memoria de Pares</h2>
+        <p>Encuentra cada letra y su representación braille.</p>
+        <div id="memory-game"></div>
+    </section>
+
+    <!-- Lectura rápida -->
+    <section class="card" style="margin-top: 40px; border-top: 6px solid var(--col-tertiary);">
+        <h2>⏱️ Lectura Rápida</h2>
+        <p>Identifica tantas letras como puedas antes de que se acabe el tiempo.</p>
+        <div id="speed-game"></div>
+    </section>
+
+    <!-- Adivina la palabra -->
+    <section class="card" style="margin-top: 40px; border-top: 6px solid var(--col-primary);">
+        <h2>🎩 Adivina la Palabra</h2>
+        <p>Descubre la palabra secreta letra a letra. Cada acierto revela su representación braille.</p>
+        <div id="guess-game"></div>
+    </section>
+
+    <!-- Secuencia de memoria -->
+    <section class="card" style="margin-top: 40px; border-top: 6px solid var(--col-secondary);">
+        <h2>🔁 Secuencia de Memoria</h2>
+        <p>Recuerda y repite las secuencias de patrones braille que se te muestran.</p>
+        <div id="sequence-game"></div>
+    </section>
+</main>
+
+    <!-- Pie de página -->
+    <footer role="contentinfo">
+        <div class="container">
+            <p>© <span id="copyright-year"></span> Brailletopía. Diseño Universal para el Aprendizaje.</p>
+            <nav aria-label="Enlaces legales y de contacto">
+                <ul style="list-style: none; display: flex; gap: 20px; margin-top: 20px;">
+                    <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                    <li><a href="accesibilidad.html">Accesibilidad</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { AccessibilityManager } from './assets/js/accessibility.js';
+        import { BrailleTranslator } from './assets/js/braille-translator.js';
+        import { BrailleQuiz } from './assets/js/braille-quiz.js';
+        import { BuildLetterGame, MemoryGame, SpeedReadingGame, GuessWordGame, SequenceMemoryGame } from './assets/js/games.js';
+        import { UserProfile } from './assets/js/user-profile.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            new AccessibilityManager();
+            new BrailleTranslator('translator-output', 'translator-input');
+            new BrailleQuiz('quiz-container');
+            new BuildLetterGame('build-game');
+            new MemoryGame('memory-game');
+            new SpeedReadingGame('speed-game', 60);
+            // Inicializar juegos adicionales con manejo de errores
+            try {
+                new GuessWordGame('guess-game');
+            } catch (err) {
+                console.error('Error al iniciar GuessWordGame:', err);
+            }
+            try {
+                new SequenceMemoryGame('sequence-game');
+            } catch (err) {
+                console.error('Error al iniciar SequenceMemoryGame:', err);
+            }
+            UserProfile.updateLastPage('juegos.html');
+            // Actualizar copyright
+            const yearEl = document.getElementById('copyright-year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+    <!-- Cabecera estática -->
     <a href="#main-content" class="btn btn-primary sr-only" style="position:absolute; top:0; z-index:999;">Saltar al contenido principal</a>
-
     <header role="banner">
         <div class="container">
             <div class="access-panel" aria-label="Herramientas de accesibilidad">
@@ -17,7 +17,6 @@
                 <button id="btn-inc-text" class="btn btn-secondary" aria-label="Aumentar tamaño de texto">A+</button>
                 <button id="btn-narrator" class="btn btn-secondary" aria-label="Activar o desactivar narrador y leer página">🔊 Narrador</button>
             </div>
-
             <div class="nav-flex">
                 <a href="index.html" aria-label="Brailletopía, ir al inicio" style="font-size: 1.5rem; font-weight: 700; text-decoration: none; color: var(--col-primary);">
                     BRAILLETOPÍA ⠃⠗⠇
@@ -25,6 +24,7 @@
                 <nav role="navigation" aria-label="Menú principal">
                     <ul style="list-style: none; display: flex; gap: 20px;">
                         <li><a href="cursos.html" class="btn btn-secondary">Cursos</a></li>
+                        <li><a href="juegos.html" class="btn btn-secondary">Juegos</a></li>
                         <li><a href="parent-settings.html" class="btn btn-secondary">Familia</a></li>
                         <li><a href="contacto.html" class="btn btn-primary">Contacto</a></li>
                     </ul>
@@ -73,30 +73,40 @@
         </section>
     </main>
 
+    <!-- Pie de página estático con año dinámico -->
     <footer role="contentinfo">
         <div class="container">
-            <p>© 2024 Brailletopía. Diseño Universal para el Aprendizaje.</p>
+            <p>© <span id="copyright-year"></span> Brailletopía. Diseño Universal para el Aprendizaje.</p>
             <nav aria-label="Enlaces legales y de contacto">
                 <ul style="list-style: none; display: flex; gap: 20px; margin-top: 20px;">
                     <li><a href="aviso-legal.html">Aviso Legal</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
                     <li><a href="accesibilidad.html">Accesibilidad</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
         </div>
     </footer>
 
+
     <script type="module">
-        import { UserProfile } from \'./assets/js/user-profile.js\';
+        import { UserProfile } from './assets/js/user-profile.js';
         import { AccessibilityManager } from './assets/js/accessibility.js';
         import { BrailleCell } from './assets/js/braille-cell.js';
-        import { soundManager } from './assets/js/sound-manager.js';
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar la gestión de accesibilidad (contraste, tamaño de texto, narrador).
             new AccessibilityManager();
+            // Crear la celda de braille interactiva de demostración.
             new BrailleCell('braille-game-preview');
-        }
-        UserProfile.updateLastPage("index.html"););
+            // Guardar la última página visitada para fines de seguimiento.
+            UserProfile.updateLastPage('index.html');
+
+            // Actualizar el año de copyright de forma dinámica
+            const yearEl = document.getElementById('copyright-year');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
+        });
     </script>
 </body>
 </html>
