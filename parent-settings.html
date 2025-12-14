@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+    <!-- Cabecera estática -->
+    <a href="#main-content" class="btn btn-primary sr-only" style="position:absolute; top:0; z-index:999;">Saltar al contenido principal</a>
+    <header role="banner">
+        <div class="container">
+            <div class="access-panel" aria-label="Herramientas de accesibilidad">
+                <button id="btn-contrast" class="btn btn-secondary" aria-label="Alternar alto contraste">👁️ Contraste</button>
+                <button id="btn-inc-text" class="btn btn-secondary" aria-label="Aumentar tamaño de texto">A+</button>
+                <button id="btn-narrator" class="btn btn-secondary" aria-label="Activar o desactivar narrador y leer página">🔊 Narrador</button>
+            </div>
+            <div class="nav-flex">
+                <a href="index.html" aria-label="Brailletopía, ir al inicio" style="font-size: 1.5rem; font-weight: 700; text-decoration: none; color: var(--col-primary);">
+                    BRAILLETOPÍA ⠃⠗⠇
+                </a>
+                <nav role="navigation" aria-label="Menú principal">
+                    <ul style="list-style: none; display: flex; gap: 20px;">
+                        <li><a href="cursos.html" class="btn btn-secondary">Cursos</a></li>
+                        <li><a href="juegos.html" class="btn btn-secondary">Juegos</a></li>
+                        <li><a href="parent-settings.html" class="btn btn-secondary">Familia</a></li>
+                        <li><a href="contacto.html" class="btn btn-primary">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
     <main id="main-content" class="container" style="padding: 60px 0; max-width: 700px;">
         <h1 style="color: var(--col-primary);">🔒 Área de Padres/Tutores</h1>
         <p>Ajusta la dificultad del aprendizaje y revisa el progreso de tu alumno.</p>
@@ -65,17 +89,31 @@
         </div>
     </main>
 
+    <!-- Pie de página -->
+    <footer role="contentinfo">
+        <div class="container">
+            <p>© <span id="copyright-year"></span> Brailletopía. Diseño Universal para el Aprendizaje.</p>
+            <nav aria-label="Enlaces legales y de contacto">
+                <ul style="list-style: none; display: flex; gap: 20px; margin-top: 20px;">
+                    <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                    <li><a href="accesibilidad.html">Accesibilidad</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
     <script type="module">
-        import { UserProfile } from \'./assets/js/user-profile.js\';
+        import { UserProfile } from './assets/js/user-profile.js';
         import { AccessibilityManager } from './assets/js/accessibility.js';
         import { ParentSettings } from './assets/js/parent-settings.js';
-        import { soundManager } from './assets/js/sound-manager.js';
-
         document.addEventListener('DOMContentLoaded', () => {
             new AccessibilityManager();
             new ParentSettings();
-        }
-        UserProfile.updateLastPage("parent-settings.html"););
+            UserProfile.updateLastPage('parent-settings.html');
+            const yearEl = document.getElementById('copyright-year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+        });
     </script>
 </body>
 </html>
