@@ -1,6 +1,10 @@
 <!-- ============================================
      COMPONENTE: FOOTER REUTILIZABLE
      Este archivo se carga dinámicamente en todas las páginas
+<<<<<<< HEAD
+=======
+     Compatible con GitHub Pages y servidor local
+>>>>>>> dev
      ============================================ -->
 
 <footer class="site-footer" role="contentinfo">
@@ -17,19 +21,32 @@
       <div class="footer-section">
         <h3>Enlaces Rápidos</h3>
         <nav aria-label="Enlaces del footer">
+<<<<<<< HEAD
           <a href="/index.html" class="footer-link">Inicio</a>
           <a href="/pages/cursos.html" class="footer-link">Cursos</a>
           <a href="/pages/juegos.html" class="footer-link">Juegos</a>
           <a href="/pages/contacto.html" class="footer-link">Contacto</a>
+=======
+          <a href="index.html" class="footer-link" data-footer-link="home">Inicio</a>
+          <a href="pages/cursos.html" class="footer-link" data-footer-link="cursos">Cursos</a>
+          <a href="pages/juegos.html" class="footer-link" data-footer-link="juegos">Juegos</a>
+          <a href="pages/contacto.html" class="footer-link" data-footer-link="contacto">Contacto</a>
+>>>>>>> dev
         </nav>
       </div>
       
       <div class="footer-section">
         <h3>Información Legal</h3>
         <nav aria-label="Enlaces legales">
+<<<<<<< HEAD
           <a href="/pages/legales.html" class="footer-link">Términos y Condiciones</a>
           <a href="/pages/legales.html#privacidad" class="footer-link">Política de Privacidad</a>
           <a href="/pages/legales.html#accesibilidad" class="footer-link">Declaración de Accesibilidad</a>
+=======
+          <a href="pages/legales.html" class="footer-link" data-footer-link="legales">Términos y Condiciones</a>
+          <a href="pages/legales.html#privacidad" class="footer-link" data-footer-link="privacidad">Política de Privacidad</a>
+          <a href="pages/legales.html#accesibilidad" class="footer-link" data-footer-link="accesibilidad">Declaración de Accesibilidad</a>
+>>>>>>> dev
         </nav>
       </div>
       
@@ -52,6 +69,7 @@
   // Ajustar rutas según la ubicación de la página
   (function() {
     const currentPath = window.location.pathname;
+<<<<<<< HEAD
     
     if (currentPath.includes('/pages/')) {
       // Estamos en una subpágina, ajustar rutas
@@ -67,5 +85,29 @@
         }
       });
     }
+=======
+    const isInPages = currentPath.includes('/pages/');
+    
+    // Función para construir rutas correctas
+    function getPath(path) {
+      if (isInPages) {
+        // Estamos en /pages/, usar rutas relativas
+        if (path === 'index.html') return '../index.html';
+        if (path.startsWith('pages/')) return path.replace('pages/', '');
+        return path;
+      } else {
+        // Estamos en la raíz
+        return path;
+      }
+    }
+    
+    // Ajustar todos los enlaces del footer
+    const footerLinks = document.querySelectorAll('.footer-link');
+    
+    footerLinks.forEach(link => {
+      const originalHref = link.getAttribute('href');
+      link.href = getPath(originalHref);
+    });
+>>>>>>> dev
   })();
 </script>
