@@ -1,0 +1,71 @@
+<!-- ============================================
+     COMPONENTE: FOOTER REUTILIZABLE
+     Este archivo se carga dinámicamente en todas las páginas
+     ============================================ -->
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>Brailletopía</h3>
+        <p>
+          Plataforma educativa accesible para el aprendizaje del sistema braille.
+          Diseñada con amor para estudiantes con discapacidad visual.
+        </p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Enlaces Rápidos</h3>
+        <nav aria-label="Enlaces del footer">
+          <a href="/index.html" class="footer-link">Inicio</a>
+          <a href="/pages/cursos.html" class="footer-link">Cursos</a>
+          <a href="/pages/juegos.html" class="footer-link">Juegos</a>
+          <a href="/pages/contacto.html" class="footer-link">Contacto</a>
+        </nav>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Información Legal</h3>
+        <nav aria-label="Enlaces legales">
+          <a href="/pages/legales.html" class="footer-link">Términos y Condiciones</a>
+          <a href="/pages/legales.html#privacidad" class="footer-link">Política de Privacidad</a>
+          <a href="/pages/legales.html#accesibilidad" class="footer-link">Declaración de Accesibilidad</a>
+        </nav>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Accesibilidad</h3>
+        <p>
+          Esta plataforma cumple con las pautas WCAG 2.1 nivel AA.
+          Estamos comprometidos con la accesibilidad digital.
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Brailletopía. Todos los derechos reservados. Diseñado para el aprendizaje inclusivo.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Ajustar rutas según la ubicación de la página
+  (function() {
+    const currentPath = window.location.pathname;
+    
+    if (currentPath.includes('/pages/')) {
+      // Estamos en una subpágina, ajustar rutas
+      const footerLinks = document.querySelectorAll('.footer-link');
+      
+      footerLinks.forEach(link => {
+        let href = link.getAttribute('href');
+        
+        if (href.startsWith('/index.html')) {
+          link.setAttribute('href', '../index.html');
+        } else if (href.startsWith('/pages/')) {
+          link.setAttribute('href', href.replace('/pages/', ''));
+        }
+      });
+    }
+  })();
+</script>
