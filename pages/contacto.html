@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contáctanos para consultas, sugerencias o soporte técnico. Estamos aquí para ayudarte.">
+  <title>Contacto - Brailletopía</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/accessibility.css">
+  
+  <style>
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .contact-info {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-tertiary));
+      color: var(--color-white);
+      padding: var(--space-xl);
+      border-radius: var(--border-radius-md);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .contact-info h2 {
+      color: var(--color-white);
+      margin-bottom: var(--space-md);
+    }
+    
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-sm);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .contact-method-icon {
+      font-size: var(--font-size-h2);
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+  
+  <!-- Header (cargado dinámicamente) -->
+  <div id="header-container"></div>
+  
+  <!-- Panel de Accesibilidad (cargado dinámicamente) -->
+  <div id="accessibility-container"></div>
+  
+  <main id="main-content" class="main-content">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <div id="breadcrumb-nav"></div>
+      
+      <div class="contact-container">
+        <div class="section-header">
+          <h1 class="section-title">Contáctanos</h1>
+          <p>Estamos aquí para ayudarte. Envíanos tus preguntas, sugerencias o comentarios.</p>
+        </div>
+        
+        <!-- Información de Contacto -->
+        <div class="contact-info">
+          <h2>¿Cómo podemos ayudarte?</h2>
+          <p>
+            Nuestro equipo está comprometido con hacer de Brailletopía la mejor plataforma
+            para aprender braille. Tu feedback es valioso para nosotros.
+          </p>
+          
+          <div class="contact-methods">
+            <div class="contact-method">
+              <span class="contact-method-icon" aria-hidden="true">📧</span>
+              <div>
+                <strong>Email</strong><br>
+                <a href="mailto:contacto@brailletopia.com" style="color: var(--color-white);">contacto@brailletopia.com</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <span class="contact-method-icon" aria-hidden="true">⏰</span>
+              <div>
+                <strong>Horario</strong><br>
+                Lun-Vie: 9:00-18:00
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <span class="contact-method-icon" aria-hidden="true">📱</span>
+              <div>
+                <strong>WhatsApp</strong><br>
+                +34 600 123 456
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Formulario de Contacto -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Formulario de Contacto</h2>
+          </div>
+          
+          <div class="card-body">
+            <div id="form-messages" role="alert" aria-live="polite"></div>
+            
+            <form id="contact-form" novalidate aria-label="Formulario de contacto">
+              <!-- Nombre -->
+              <div class="form-group">
+                <label for="name" class="form-label required">Nombre completo</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  class="form-input"
+                  aria-required="true"
+                  aria-describedby="name-help name-error"
+                  autocomplete="name"
+                >
+                <span id="name-help" class="form-help">Nombre y apellidos</span>
+                <div id="name-error" class="form-error" role="alert" style="display: none;"></div>
+              </div>
+              
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email" class="form-label required">Correo electrónico</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  class="form-input"
+                  aria-required="true"
+                  aria-describedby="email-help email-error"
+                  autocomplete="email"
+                >
+                <span id="email-help" class="form-help">Usaremos este email para responderte</span>
+                <div id="email-error" class="form-error" role="alert" style="display: none;"></div>
+              </div>
+              
+              <!-- Asunto -->
+              <div class="form-group">
+                <label for="subject" class="form-label required">Asunto</label>
+                <select 
+                  id="subject" 
+                  name="subject" 
+                  class="form-select"
+                  aria-required="true"
+                  aria-describedby="subject-error"
+                >
+                  <option value="">Selecciona un asunto</option>
+                  <option value="consulta">Consulta general</option>
+                  <option value="soporte">Soporte técnico</option>
+                  <option value="sugerencia">Sugerencia</option>
+                  <option value="accesibilidad">Problema de accesibilidad</option>
+                  <option value="otro">Otro</option>
+                </select>
+                <div id="subject-error" class="form-error" role="alert" style="display: none;"></div>
+              </div>
+              
+              <!-- Mensaje -->
+              <div class="form-group">
+                <label for="message" class="form-label required">Mensaje</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  class="form-textarea"
+                  aria-required="true"
+                  aria-describedby="message-help message-error"
+                  rows="6"
+                ></textarea>
+                <span id="message-help" class="form-help">Cuéntanos cómo podemos ayudarte (mínimo 10 caracteres)</span>
+                <div id="message-error" class="form-error" role="alert" style="display: none;"></div>
+              </div>
+              
+              <!-- Consentimiento RGPD -->
+              <div class="form-group">
+                <div class="form-check">
+                  <input 
+                    type="checkbox" 
+                    id="consent" 
+                    name="consent" 
+                    class="form-check-input"
+                    aria-required="true"
+                    aria-describedby="consent-error"
+                  >
+                  <label for="consent" class="form-check-label">
+                    He leído y acepto la <a href="legales.html#privacidad">política de privacidad</a> 
+                    y el tratamiento de mis datos personales. <span style="color: var(--color-error);">*</span>
+                  </label>
+                </div>
+                <div id="consent-error" class="form-error" role="alert" style="display: none;"></div>
+              </div>
+              
+              <!-- Botones -->
+              <div style="display: flex; gap: var(--space-md); margin-top: var(--space-lg);">
+                <button type="submit" class="btn btn-primary btn-xl" style="flex: 1;">
+                  Enviar Mensaje
+                </button>
+                <button type="reset" class="btn btn-outline" style="flex: 1;">
+                  Limpiar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Botón Volver -->
+      <div id="back-button-container"></div>
+    </div>
+  </main>
+  
+  <!-- Footer (cargado dinámicamente) -->
+  <div id="footer-container"></div>
+  
+  <script src="../js/components-loader.js"></script>
+  <script type="module">
+    import { AccessibilityManager } from '../js/accessibility.js';
+    
+    let accessibilityManager;
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      accessibilityManager = new AccessibilityManager();
+      
+      // Crear breadcrumbs
+      window.createBreadcrumbs([
+        { text: 'Inicio', url: '../index.html' },
+        { text: 'Contacto', url: '' }
+      ]);
+      
+      const form = document.getElementById('contact-form');
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        if (validateForm()) {
+          submitForm();
+        }
+      });
+      
+      form.addEventListener('reset', () => {
+        clearErrors();
+        setTimeout(() => {
+          accessibilityManager.announce('Formulario limpiado');
+        }, 100);
+      });
+    });
+    
+    function validateForm() {
+      clearErrors();
+      let isValid = true;
+      
+      // Validar nombre
+      const name = document.getElementById('name').value.trim();
+      if (!name) {
+        showError('name', 'El nombre es obligatorio');
+        isValid = false;
+      } else if (name.length < 3) {
+        showError('name', 'El nombre debe tener al menos 3 caracteres');
+        isValid = false;
+      }
+      
+      // Validar email
+      const email = document.getElementById('email').value.trim();
+      if (!email) {
+        showError('email', 'El correo electrónico es obligatorio');
+        isValid = false;
+      } else if (!isValidEmail(email)) {
+        showError('email', 'Por favor, introduce un correo válido');
+        isValid = false;
+      }
+      
+      // Validar asunto
+      const subject = document.getElementById('subject').value;
+      if (!subject) {
+        showError('subject', 'Por favor, selecciona un asunto');
+        isValid = false;
+      }
+      
+      // Validar mensaje
+      const message = document.getElementById('message').value.trim();
+      if (!message) {
+        showError('message', 'El mensaje es obligatorio');
+        isValid = false;
+      } else if (message.length < 10) {
+        showError('message', 'El mensaje debe tener al menos 10 caracteres');
+        isValid = false;
+      }
+      
+      // Validar consentimiento
+      const consent = document.getElementById('consent').checked;
+      if (!consent) {
+        showError('consent', 'Debes aceptar la política de privacidad');
+        isValid = false;
+      }
+      
+      if (!isValid) {
+        accessibilityManager.announce('Hay errores en el formulario. Por favor, corrígelos.');
+      }
+      
+      return isValid;
+    }
+    
+    function submitForm() {
+      const messagesDiv = document.getElementById('form-messages');
+      messagesDiv.innerHTML = `
+        <div class="alert alert-info">
+          <div class="alert-icon">⏳</div>
+          <div class="alert-content">
+            <p>Enviando tu mensaje...</p>
+          </div>
+        </div>
+      `;
+      
+      // Simular envío
+      setTimeout(() => {
+        messagesDiv.innerHTML = `
+          <div class="alert alert-success">
+            <div class="alert-icon">✓</div>
+            <div class="alert-content">
+              <p><strong>¡Mensaje enviado con éxito!</strong></p>
+              <p>Gracias por contactarnos. Te responderemos en un plazo de 24-48 horas.</p>
+            </div>
+          </div>
+        `;
+        
+        document.getElementById('contact-form').reset();
+        accessibilityManager.announce('Mensaje enviado exitosamente. Te responderemos pronto.');
+        
+        // Scroll al mensaje
+        messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 1500);
+    }
+    
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    
+    function showError(fieldId, message) {
+      const input = document.getElementById(fieldId);
+      const errorDiv = document.getElementById(`${fieldId}-error`);
+      
+      input.classList.add('error');
+      input.setAttribute('aria-invalid', 'true');
+      
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'flex';
+    }
+    
+    function clearErrors() {
+      const inputs = document.querySelectorAll('.form-input, .form-textarea, .form-select');
+      const errors = document.querySelectorAll('.form-error');
+      const messages = document.getElementById('form-messages');
+      
+      inputs.forEach(input => {
+        input.classList.remove('error');
+        input.setAttribute('aria-invalid', 'false');
+      });
+      
+      errors.forEach(error => {
+        error.style.display = 'none';
+        error.textContent = '';
+      });
+      
+      messages.innerHTML = '';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cursos de braille organizados por niveles - Principiante, Intermedio y Avanzado.">
+  <title>Cursos - Brailletopía</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/accessibility.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+  
+  <!-- Header (cargado dinámicamente) -->
+  <div id="header-container"></div>
+  
+  <!-- Panel de Accesibilidad (cargado dinámicamente) -->
+  <div id="accessibility-container"></div>
+  
+  <main id="main-content" class="main-content">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <div id="breadcrumb-nav"></div>
+      
+      <div class="section-header">
+        <h1 class="section-title">Cursos de Braille</h1>
+        <p>Aprende braille paso a paso con nuestros cursos estructurados por niveles de dificultad.</p>
+      </div>
+      
+      <div class="layout-with-sidebar">
+        <!-- Sidebar con Filtros -->
+        <aside class="sidebar" aria-label="Filtros de cursos">
+          <h2 style="margin-bottom: var(--space-md); font-size: var(--font-size-h4);">Filtrar Cursos</h2>
+          
+          <div class="form-group">
+            <label class="form-label" for="filter-level">Nivel</label>
+            <select id="filter-level" class="form-select">
+              <option value="todos">Todos los niveles</option>
+              <option value="principiante">Principiante</option>
+              <option value="intermedio">Intermedio</option>
+              <option value="avanzado">Avanzado</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="filter-category">Categoría</label>
+            <select id="filter-category" class="form-select">
+              <option value="todos">Todas las categorías</option>
+              <option value="alfabeto">Alfabeto</option>
+              <option value="numeros">Números</option>
+              <option value="puntuacion">Puntuación</option>
+              <option value="escritura">Escritura</option>
+            </select>
+          </div>
+          
+          <button class="btn btn-primary" style="width: 100%; margin-top: var(--space-md);" aria-label="Aplicar filtros">
+            Aplicar Filtros
+          </button>
+          
+          <button class="btn btn-outline" style="width: 100%; margin-top: var(--space-sm);" aria-label="Limpiar filtros">
+            Limpiar
+          </button>
+        </aside>
+        
+        <!-- Contenido Principal -->
+        <div>
+          <div class="grid" role="list" aria-label="Lista de cursos disponibles">
+            <!-- Curso 1 -->
+            <article class="col-12 col-md-6 course-card card" role="listitem">
+              <span class="course-level">Principiante</span>
+              <div class="card-header">
+                <div class="card-icon">A</div>
+                <h3 class="card-title">Alfabeto Braille Básico</h3>
+              </div>
+              <div class="card-body">
+                <p>
+                  Aprende las 27 letras del alfabeto en braille. Perfecto para comenzar
+                  tu viaje en el aprendizaje del sistema braille.
+                </p>
+                <div class="badge badge-primary" style="margin-top: var(--space-sm);">12 lecciones</div>
+              </div>
+              <div class="card-footer">
+                <a href="#" class="btn btn-primary" style="width: 100%;">Comenzar</a>
+              </div>
+            </article>
+            
+            <!-- Curso 2 -->
+            <article class="col-12 col-md-6 course-card card" role="listitem">
+              <span class="course-level">Principiante</span>
+              <div class="card-header">
+                <div class="card-icon">⠼</div>
+                <h3 class="card-title">Números en Braille</h3>
+              </div>
+              <div class="card-body">
+                <p>
+                  Domina los números del 0 al 9 y aprende a usar el indicador numérico
+                  para representar cualquier número.
+                </p>
+                <div class="badge badge-primary" style="margin-top: var(--space-sm);">8 lecciones</div>
+              </div>
+              <div class="card-footer">
+                <a href="#" class="btn btn-primary" style="width: 100%;">Comenzar</a>
+              </div>
+            </article>
+            
+            <!-- Curso 3 -->
+            <article class="col-12 col-md-6 course-card card" role="listitem">
+              <span class="course-level" style="background: var(--color-tertiary); color: var(--color-white);">Intermedio</span>
+              <div class="card-header">
+                <div class="card-icon" style="background: var(--color-tertiary);">⠂</div>
+                <h3 class="card-title">Signos de Puntuación</h3>
+              </div>
+              <div class="card-body">
+                <p>
+                  Aprende todos los signos de puntuación en braille: comas, puntos,
+                  signos de interrogación y exclamación.
+                </p>
+                <div class="badge badge-outline" style="margin-top: var(--space-sm);">10 lecciones</div>
+              </div>
+              <div class="card-footer">
+                <a href="#" class="btn btn-secondary" style="width: 100%;">Comenzar</a>
+              </div>
+            </article>
+            
+            <!-- Curso 4 -->
+            <article class="col-12 col-md-6 course-card card" role="listitem">
+              <span class="course-level" style="background: var(--color-tertiary); color: var(--color-white);">Intermedio</span>
+              <div class="card-header">
+                <div class="card-icon" style="background: var(--color-tertiary);">⠿</div>
+                <h3 class="card-title">Contracciones Básicas</h3>
+              </div>
+              <div class="card-body">
+                <p>
+                  Descubre las contracciones más comunes en braille español para
+                  escribir de forma más eficiente.
+                </p>
+                <div class="badge badge-outline" style="margin-top: var(--space-sm);">15 lecciones</div>
+              </div>
+              <div class="card-footer">
+                <a href="#" class="btn btn-secondary" style="width: 100%;">Comenzar</a>
+              </div>
+            </article>
+            
+            <!-- Curso 5 -->
+            <article class="col-12 col-md-6 course-card card" role="listitem">
+              <span class="course-level" style="background: var(--color-error); color: var(--color-white);">Avanzado</span>
+              <div class="card-header">
+                <div class="card-icon" style="background: var(--color-error);">⠸</div>
+                <h3 class="card-title">Braille Matemático</h3>
+              </div>
+              <div class="card-body">
+                <p>
+                  Aprende a escribir y leer expresiones matemáticas en braille,
+                  incluyendo operaciones y símbolos especiales.
+                </p>
+                <div class="badge badge-secondary" style="margin-top: var(--space-sm);">20 lecciones</div>
+              </div>
+              <div class="card-footer">
+                <a href="#" class="btn btn-outline" style="width: 100%;">Comenzar</a>
+              </div>
+            </article>
+            
+            <!-- Curso 6 -->
+            <article class="col-12 col-md-6 course-card card" role="listitem">
+              <span class="course-level" style="background: var(--color-error); color: var(--color-white);">Avanzado</span>
+              <div class="card-header">
+                <div class="card-icon" style="background: var(--color-error);">⠼</div>
+                <h3 class="card-title">Escritura Rápida</h3>
+              </div>
+              <div class="card-body">
+                <p>
+                  Desarrolla velocidad y precisión en la escritura braille mediante
+                  técnicas avanzadas y práctica intensiva.
+                </p>
+                <div class="badge badge-secondary" style="margin-top: var(--space-sm);">18 lecciones</div>
+              </div>
+              <div class="card-footer">
+                <a href="#" class="btn btn-outline" style="width: 100%;">Comenzar</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Botón Volver -->
+      <div id="back-button-container"></div>
+    </div>
+  </main>
+  
+  <!-- Footer (cargado dinámicamente) -->
+  <div id="footer-container"></div>
+  
+  <script src="../js/components-loader.js"></script>
+  <script type="module">
+    import { AccessibilityManager } from '../js/accessibility.js';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      new AccessibilityManager();
+      
+      // Crear breadcrumbs
+      window.createBreadcrumbs([
+        { text: 'Inicio', url: '../index.html' },
+        { text: 'Cursos', url: '' }
+      ]);
+    });
+  </script>
+</body>
+</html>
