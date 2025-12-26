@@ -1,13 +1,14 @@
 <!-- ============================================
      COMPONENTE: HEADER REUTILIZABLE
      Este archivo se carga dinámicamente en todas las páginas
+     Compatible con GitHub Pages y servidor local
      ============================================ -->
 
 <header class="site-header" role="banner">
   <div class="container">
     <div class="header-container">
       <!-- Logo -->
-      <a href="/index.html" class="site-logo" aria-label="Brailletopía - Página principal" id="logo-link">
+      <a href="index.html" class="site-logo" aria-label="Brailletopía - Página principal" id="logo-link">
         <span aria-hidden="true">⠃⠗⠇</span>
         <span>Brailletopía</span>
       </a>
@@ -15,15 +16,15 @@
       <!-- Navegación Principal -->
       <nav class="main-nav" aria-label="Navegación principal">
         <ul class="nav-list">
-          <li><a href="/index.html" class="nav-link" data-page="home">Inicio</a></li>
-          <li><a href="/pages/cursos.html" class="nav-link" data-page="cursos">Cursos</a></li>
-          <li><a href="/pages/juegos.html" class="nav-link" data-page="juegos">Juegos</a></li>
-          <li><a href="/pages/contacto.html" class="nav-link" data-page="contacto">Contacto</a></li>
+          <li><a href="index.html" class="nav-link" data-page="home">Inicio</a></li>
+          <li><a href="pages/cursos.html" class="nav-link" data-page="cursos">Cursos</a></li>
+          <li><a href="pages/juegos.html" class="nav-link" data-page="juegos">Juegos</a></li>
+          <li><a href="pages/contacto.html" class="nav-link" data-page="contacto">Contacto</a></li>
         </ul>
       </nav>
       
       <!-- Botón de Login -->
-      <a href="/pages/login.html" class="btn btn-primary" aria-label="Iniciar sesión">
+      <a href="pages/login.html" class="btn btn-primary" id="login-btn" aria-label="Iniciar sesión">
         Iniciar Sesión
       </a>
     </div>
@@ -31,48 +32,52 @@
 </header>
 
 <script>
-  // Marcar página activa en la navegación
+  // Configurar rutas según ubicación (local o GitHub Pages)
   (function() {
     const currentPath = window.location.pathname;
+    const isInPages = currentPath.includes('/pages/');
+    
+    // Detectar si estamos en GitHub Pages
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    const basePath = isGitHubPages ? '/brailletopia/' : '/';
+    
+    // Función para construir rutas correctas
+    function getPath(path) {
+      if (isInPages) {
+        // Estamos en /pages/, usar rutas relativas
+        if (path === 'index.html') return '../index.html';
+        if (path.startsWith('pages/')) return path.replace('pages/', '');
+        return path;
+      } else {
+        // Estamos en la raíz
+        return path;
+      }
+    }
+    
+    // Ajustar todas las rutas
+    const logo = document.getElementById('logo-link');
     const links = document.querySelectorAll('.nav-link');
+    const loginBtn = document.getElementById('login-btn');
+    
+    logo.href = getPath('index.html');
     
     links.forEach(link => {
-      const href = link.getAttribute('href');
-      // Normalizar las rutas para comparación
-      const normalizedHref = href.replace(/^\//, '');
-      const normalizedPath = currentPath.replace(/^\//, '');
+      const originalHref = link.getAttribute('href');
+      link.href = getPath(originalHref);
       
-      if (normalizedPath === normalizedHref || 
-          normalizedPath.endsWith(normalizedHref) ||
-          (normalizedPath === '' && normalizedHref === 'index.html') ||
-          (normalizedPath === 'index.html' && normalizedHref === 'index.html')) {
+      // Marcar página activa
+      const linkPath = link.href.split('/').pop();
+      const currentFile = currentPath.split('/').pop() || 'index.html';
+      
+      if (linkPath === currentFile || 
+          (linkPath === 'index.html' && (currentFile === '' || currentFile === 'index.html'))) {
         link.classList.add('active');
         link.setAttribute('aria-current', 'page');
       }
     });
     
-    // Ajustar rutas del logo según la ubicación
-    const logo = document.getElementById('logo-link');
-    if (currentPath.includes('/pages/')) {
-      logo.setAttribute('href', '../index.html');
-      
-      // Ajustar todas las rutas de navegación
-      links.forEach(link => {
-        let href = link.getAttribute('href');
-        if (!href.startsWith('../') && !href.startsWith('http')) {
-          if (href === '/index.html' || href === 'index.html') {
-            link.setAttribute('href', '../index.html');
-          } else if (href.startsWith('/pages/')) {
-            link.setAttribute('href', href.replace('/pages/', ''));
-          }
-        }
-      });
-      
-      // Ajustar botón de login
-      const loginBtn = document.querySelector('a[href="/pages/login.html"]');
-      if (loginBtn) {
-        loginBtn.setAttribute('href', 'login.html');
-      }
+    if (loginBtn) {
+      loginBtn.href = getPath('pages/login.html');
     }
   })();
 </script>
