@@ -5,7 +5,7 @@
 # Aplica correcciones y despliega a main
 # ════════════════════════════════════════════════════════════════
 
-echo "🚀 Iniciando deploy de Brailletopía a GitHub Pages..."
+echo "Iniciando deploy de Brailletopía a GitHub Pages..."
 echo ""
 
 # Colores para mensajes
@@ -22,6 +22,18 @@ if [ ! -f "index.html" ]; then
 fi
 
 echo -e "${GREEN}✓${NC} Directorio correcto detectado"
+
+# Verificar que el proyecto compila antes de desplegar
+echo ""
+echo "Verificando que el proyecto compila (npm run build)..."
+npm run build
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}❌ Error: el proyecto no compila. Corrige los errores antes de desplegar.${NC}"
+    exit 1
+fi
+
+echo -e "${GREEN}✓${NC} Compilación correcta"
 
 # Verificar que no hay cambios sin commit
 if [[ -n $(git status -s) ]]; then
@@ -44,7 +56,7 @@ fi
 
 # Asegurarse de estar en dev
 echo ""
-echo "📍 Cambiando a rama dev..."
+echo "Cambiando a rama dev..."
 git checkout dev
 
 if [ $? -ne 0 ]; then
@@ -56,7 +68,7 @@ echo -e "${GREEN}✓${NC} En rama dev"
 
 # Push dev al remoto
 echo ""
-echo "📤 Actualizando rama dev en GitHub..."
+echo "Actualizando rama dev en GitHub..."
 git push origin dev
 
 if [ $? -ne 0 ]; then
@@ -68,7 +80,7 @@ echo -e "${GREEN}✓${NC} Rama dev actualizada"
 
 # Cambiar a main
 echo ""
-echo "📍 Cambiando a rama main..."
+echo "Cambiando a rama main..."
 git checkout main
 
 if [ $? -ne 0 ]; then
@@ -78,7 +90,7 @@ fi
 
 # Actualizar main con remoto
 echo ""
-echo "🔄 Actualizando main desde GitHub..."
+echo "Actualizando main desde GitHub..."
 git pull origin main
 
 if [ $? -ne 0 ]; then
@@ -107,7 +119,7 @@ echo -e "${GREEN}✓${NC} Merge completado sin conflictos"
 
 # Push main
 echo ""
-echo "🚀 Desplegando a GitHub Pages (push a main)..."
+echo "Desplegando a GitHub Pages (push a main)..."
 git push origin main
 
 if [ $? -ne 0 ]; then
@@ -133,14 +145,17 @@ echo "════════════════════════�
 echo -e "${GREEN}✅ DEPLOY COMPLETADO EXITOSAMENTE${NC}"
 echo "════════════════════════════════════════════════════════════"
 echo ""
-echo "🌐 Tu sitio estará disponible en 1-2 minutos en:"
+echo "GitHub Actions compilará y publicará el sitio automáticamente."
+echo "Tu sitio estará disponible en unos minutos en:"
 echo "   https://cdoaweb.github.io/brailletopia/"
 echo ""
-echo "📊 Información del deploy:"
+echo "NOTA: en Settings > Pages el 'Source' debe ser 'GitHub Actions'."
+echo ""
+echo "Información del deploy:"
 echo "   Rama actual: $(git branch --show-current)"
 echo "   Último commit en main: $(git log main -1 --oneline)"
 echo ""
-echo "💡 Comandos útiles:"
+echo "Comandos útiles:"
 echo "   Ver estado: git status"
 echo "   Ver logs: git log --oneline -5"
 echo "   Ver ramas: git branch -a"

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -81,7 +81,7 @@
       <div class="login-container">
         <div class="login-card">
           <div class="login-header">
-            <h1>Iniciar Sesión</h1>
+            <h1 id="form-title">Iniciar Sesión</h1>
             <p>Accede a tu cuenta para continuar aprendiendo braille</p>
           </div>
           
@@ -90,6 +90,21 @@
           
           <!-- Formulario de Login -->
           <form id="login-form" novalidate aria-label="Formulario de inicio de sesión">
+            <!-- Nombre (solo en registro) -->
+            <div class="form-group" id="name-group" style="display: none;">
+              <label for="name" class="form-label required">Nombre</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                aria-describedby="name-error"
+                autocomplete="name"
+                placeholder="Tu nombre"
+              >
+              <div id="name-error" class="form-error" role="alert" style="display: none;"></div>
+            </div>
+
             <!-- Email -->
             <div class="form-group">
               <label for="email" class="form-label required">Correo electrónico</label>
@@ -138,30 +153,23 @@
             </div>
             
             <!-- Botón Submit -->
-            <button type="submit" class="btn btn-primary btn-xl" style="width: 100%;">
+            <button type="submit" id="submit-btn" class="btn btn-primary btn-xl" style="width: 100%;">
               Iniciar Sesión
             </button>
-            
-            <!-- Enlaces adicionales -->
-            <div style="text-align: center; margin-top: var(--space-lg);">
-              <a href="#" style="color: var(--color-tertiary); font-size: var(--font-size-small);">
-                ¿Olvidaste tu contraseña?
-              </a>
-            </div>
           </form>
-          
+
           <div class="login-divider">
             <span>o</span>
           </div>
-          
-          <!-- Registro -->
+
+          <!-- Cambiar entre login y registro -->
           <div style="text-align: center;">
-            <p style="margin-bottom: var(--space-md); color: var(--color-gray-700);">
+            <p id="switch-question" style="margin-bottom: var(--space-md); color: var(--color-gray-700);">
               ¿No tienes cuenta?
             </p>
-            <a href="#" class="btn btn-outline btn-xl" style="width: 100%;">
+            <button type="button" id="switch-mode" class="btn btn-outline btn-xl" style="width: 100%;">
               Crear una cuenta
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -174,118 +182,7 @@
   <!-- Footer (cargado dinámicamente) -->
   <div id="footer-container"></div>
   
-  <script src="../js/components-loader.js"></script>
-  <script type="module">
-    import { AccessibilityManager } from '../js/accessibility.js';
-    
-    let accessibilityManager;
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      accessibilityManager = new AccessibilityManager();
-      
-      // Crear breadcrumbs
-      window.createBreadcrumbs([
-        { text: 'Inicio', url: '../index.html' },
-        { text: 'Iniciar Sesión', url: '' }
-      ]);
-      
-      // Validación del formulario
-      const form = document.getElementById('login-form');
-      const emailInput = document.getElementById('email');
-      const passwordInput = document.getElementById('password');
-      
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        let isValid = true;
-        
-        // Limpiar errores previos
-        clearErrors();
-        
-        // Validar email
-        const email = emailInput.value.trim();
-        if (!email) {
-          showError('email', 'El correo electrónico es obligatorio');
-          isValid = false;
-        } else if (!isValidEmail(email)) {
-          showError('email', 'Por favor, introduce un correo electrónico válido');
-          isValid = false;
-        }
-        
-        // Validar password
-        const password = passwordInput.value;
-        if (!password) {
-          showError('password', 'La contraseña es obligatoria');
-          isValid = false;
-        } else if (password.length < 6) {
-          showError('password', 'La contraseña debe tener al menos 6 caracteres');
-          isValid = false;
-        }
-        
-        if (isValid) {
-          // Simulación de login exitoso
-          showGlobalSuccess('¡Inicio de sesión exitoso! Redirigiendo...');
-          setTimeout(() => {
-            window.location.href = 'cursos.html';
-          }, 2000);
-        } else {
-          accessibilityManager.announce('Por favor, corrige los errores en el formulario');
-        }
-      });
-      
-      // Validación en tiempo real
-      emailInput.addEventListener('blur', () => {
-        if (emailInput.value.trim() && !isValidEmail(emailInput.value)) {
-          showError('email', 'Por favor, introduce un correo electrónico válido');
-        }
-      });
-    });
-    
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-    
-    function showError(fieldId, message) {
-      const input = document.getElementById(fieldId);
-      const errorDiv = document.getElementById(`${fieldId}-error`);
-      
-      input.classList.add('error');
-      input.setAttribute('aria-invalid', 'true');
-      
-      errorDiv.textContent = message;
-      errorDiv.style.display = 'flex';
-    }
-    
-    function clearErrors() {
-      const inputs = document.querySelectorAll('.form-input');
-      const errors = document.querySelectorAll('.form-error');
-      const globalError = document.getElementById('login-error');
-      
-      inputs.forEach(input => {
-        input.classList.remove('error');
-        input.setAttribute('aria-invalid', 'false');
-      });
-      
-      errors.forEach(error => {
-        error.style.display = 'none';
-        error.textContent = '';
-      });
-      
-      globalError.style.display = 'none';
-      globalError.className = '';
-    }
-    
-    function showGlobalSuccess(message) {
-      const errorDiv = document.getElementById('login-error');
-      errorDiv.className = 'alert alert-success';
-      errorDiv.innerHTML = `
-        <div class="alert-icon">✓</div>
-        <div class="alert-content">
-          <p>${message}</p>
-        </div>
-      `;
-      errorDiv.style.display = 'flex';
-    }
-  </script>
+  <script type="module" src="../src/pages/login.ts"></script>
 </body>
 </html>
+
