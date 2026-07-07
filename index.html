@@ -226,19 +226,6 @@
   <div id="footer-container"></div>
   
   <!-- Scripts -->
-  <script src="js/components-loader.js"></script>
-  <script type="module">
-    import { AccessibilityManager } from './js/accessibility.js';
-    
-    // Inicializar gestor de accesibilidad
-    document.addEventListener('DOMContentLoaded', () => {
-      const accessibilityManager = new AccessibilityManager();
-      
-      // Anuncio de bienvenida
-      setTimeout(() => {
-        accessibilityManager.announce('Bienvenido a Brailletopía. Usa Alt + A para abrir el panel de accesibilidad.');
-      }, 1000);
-    });
-  </script>
+  <script type="module" src="./src/pages/home.ts"></script>
 </body>
 </html>

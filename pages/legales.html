@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -330,19 +330,7 @@
   <!-- Footer (cargado dinámicamente) -->
   <div id="footer-container"></div>
   
-  <script src="../js/components-loader.js"></script>
-  <script type="module">
-    import { AccessibilityManager } from '../js/accessibility.js';
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      new AccessibilityManager();
-      
-      // Crear breadcrumbs
-      window.createBreadcrumbs([
-        { text: 'Inicio', url: '../index.html' },
-        { text: 'Información Legal', url: '' }
-      ]);
-    });
-  </script>
+  <script type="module" src="../src/pages/legales.ts"></script>
 </body>
 </html>
+

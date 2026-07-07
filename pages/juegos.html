@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -51,9 +51,17 @@
                   Perfecto para memorizar el alfabeto braille.
                 </p>
                 <div class="badge badge-primary" style="margin-top: var(--space-sm);">10 preguntas</div>
+                <div class="form-group" style="margin-top: var(--space-md); margin-bottom: 0;">
+                  <label class="form-label" for="guess-level">Nivel de dificultad</label>
+                  <select id="guess-level" class="form-select">
+                    <option value="easy">Fácil (letras A-E)</option>
+                    <option value="medium">Medio (letras A-J)</option>
+                    <option value="hard">Difícil (todo el alfabeto)</option>
+                  </select>
+                </div>
               </div>
               <div class="card-footer">
-                <button class="btn btn-primary" style="width: 100%;" onclick="showGame('guess-letter')">
+                <button class="btn btn-primary" style="width: 100%;" data-game="guess-letter">
                   Jugar Ahora
                 </button>
               </div>
@@ -74,7 +82,7 @@
                 <div class="badge badge-secondary" style="margin-top: var(--space-sm);">Práctica libre</div>
               </div>
               <div class="card-footer">
-                <button class="btn btn-secondary" style="width: 100%;" onclick="showGame('braille-cell')">
+                <button class="btn btn-secondary" style="width: 100%;" data-game="braille-cell">
                   Abrir Celda
                 </button>
               </div>
@@ -95,7 +103,7 @@
                 <div class="badge badge-outline" style="margin-top: var(--space-sm);">Escritura libre</div>
               </div>
               <div class="card-footer">
-                <button class="btn btn-outline" style="width: 100%;" onclick="showGame('perkins')">
+                <button class="btn btn-outline" style="width: 100%;" data-game="perkins">
                   Abrir Teclado
                 </button>
               </div>
@@ -107,7 +115,7 @@
       <!-- Área de Juego -->
       <section id="game-area" class="section" style="display: none;" aria-live="polite">
         <div style="text-align: center; margin-bottom: var(--space-lg);">
-          <button class="btn btn-outline" onclick="closeGame()">
+          <button class="btn btn-outline" id="close-game">
             ← Volver a Juegos
           </button>
         </div>
@@ -124,98 +132,7 @@
   <!-- Footer (cargado dinámicamente) -->
   <div id="footer-container"></div>
   
-  <script src="../js/components-loader.js"></script>
-  <script type="module">
-    import { AccessibilityManager } from '../js/accessibility.js';
-    import { GuessTheLetterGame } from '../js/games.js';
-    import { BrailleCell, PerkinsKeyboard } from '../js/braille.js';
-    
-    let currentGame = null;
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      new AccessibilityManager();
-      
-      // Crear breadcrumbs
-      window.createBreadcrumbs([
-        { text: 'Inicio', url: '../index.html' },
-        { text: 'Juegos', url: '' }
-      ]);
-    });
-    
-    window.showGame = function(gameType) {
-      const gameArea = document.getElementById('game-area');
-      const gameContainer = document.getElementById('active-game-container');
-      
-      // Limpiar juego anterior
-      if (currentGame) {
-        gameContainer.innerHTML = '';
-        currentGame = null;
-      }
-      
-      // Mostrar área de juego
-      gameArea.style.display = 'block';
-      gameArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      
-      // Cargar juego seleccionado
-      switch(gameType) {
-        case 'guess-letter':
-          gameContainer.innerHTML = '<div id="guess-game"></div>';
-          setTimeout(() => {
-            currentGame = new GuessTheLetterGame('guess-game', { level: 'easy' });
-          }, 100);
-          break;
-          
-        case 'braille-cell':
-          gameContainer.innerHTML = `
-            <div style="max-width: 600px; margin: 0 auto;">
-              <h2 style="text-align: center; margin-bottom: var(--space-lg);">Celda Braille Interactiva</h2>
-              <p style="text-align: center; margin-bottom: var(--space-xl);">
-                Haz clic en los puntos para activarlos o desactivarlos. El sistema identificará automáticamente la letra.
-              </p>
-              <div id="braille-demo"></div>
-              <div style="text-align: center; margin-top: var(--space-xl);">
-                <button class="btn btn-secondary" onclick="resetBrailleCell()">
-                  🔄 Reiniciar
-                </button>
-              </div>
-            </div>
-          `;
-          setTimeout(() => {
-            currentGame = new BrailleCell('braille-demo', { 
-              size: 'large', 
-              interactive: true,
-              showNumbers: true 
-            });
-          }, 100);
-          break;
-          
-        case 'perkins':
-          gameContainer.innerHTML = '<div id="perkins-demo"></div>';
-          setTimeout(() => {
-            currentGame = new PerkinsKeyboard('perkins-demo', { showOutput: true });
-          }, 100);
-          break;
-      }
-    };
-    
-    window.closeGame = function() {
-      const gameArea = document.getElementById('game-area');
-      gameArea.style.display = 'none';
-      
-      if (currentGame) {
-        const gameContainer = document.getElementById('active-game-container');
-        gameContainer.innerHTML = '';
-        currentGame = null;
-      }
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-    
-    window.resetBrailleCell = function() {
-      if (currentGame && currentGame.reset) {
-        currentGame.reset();
-      }
-    };
-  </script>
+  <script type="module" src="../src/pages/juegos.ts"></script>
 </body>
 </html>
+
