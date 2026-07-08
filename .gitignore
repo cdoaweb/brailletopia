@@ -1,6 +1,7 @@
 # Dependencias y build (Vite + TypeScript)
 node_modules/
 dist/
+.vite/
 
 # Archivos del sistema
 .DS_Store
